@@ -10,7 +10,7 @@ h2 {
   font-family: "Poppins", sans-serif;
 }
 
-.blueprint {
+.segment-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,7 +22,7 @@ h2 {
 
 /* This is what I've done before, the spacing in between didn't work this way. 
 
-.blueprint {
+.segment-container {
   columns: 6;
   scale: 70%;
   justify-content: center;
