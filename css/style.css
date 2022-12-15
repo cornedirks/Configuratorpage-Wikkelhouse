@@ -20,6 +20,16 @@ h2 {
   margin-bottom: 2%;
 }
 
+.segment-draggable {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+
 /* This is what I've done before, the spacing in between didn't work this way. 
 
 .segment-container {

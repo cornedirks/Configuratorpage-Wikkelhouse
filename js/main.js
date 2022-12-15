@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
-    var containerId = $("#containerId");
-    var segmentId = ["segment1"];
+    let containerId = $("#containerId");
+    let segmentId = ["segment1"];
+    let uuid = 1;
     $.each(segmentId, function(index, value){
 
         $("#containerId").sortable({
@@ -13,21 +14,30 @@ $(document).ready(function(){
         });
 
         $("#add").click( function() {
-            containerId.append($("<div class='segment'>" + value + "</div>"));
+            uuid ++; // dit moeten we bijhouden, precies weten welke blokjes er zijn.
+        
+            newSegmentContainer = $('<div>', {class:'segment img', id: "segment" + uuid})
+            containerId.append(newSegmentContainer);
+            segmentContainer = $('#segment' + uuid);
+            segmentContainer.append($('<img>', {src:'images/Empty-Segment.png'}));
         });
 
         $("#remove").click( function() {
-            $("div:last").remove();
+            $("#containerId div:last").remove();
+
+            // dit specifiek op de laatste id, dus je hebt een array pop, de laatste weg.
+            // verwijderen moet op een id kunnen.
         });
 
-        $("#segmentId").sortable({
+        $(".segment-container").sortable({
             connectWith: "#objectCardId",
             opacity: 0.5,
             cursor: "grabbing",
+            // is hier een class die je kan toevoegen wanneer je aan het draggen bent?
         });
 
         $("#objectContainerId").sortable({
-            connectWith: "#segmentId",
+            connectWith: ".segment",
             opacity: 0.5,
             cursor: "grabbing",
         });
