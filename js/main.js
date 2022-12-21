@@ -5,41 +5,86 @@ $(document).ready(function(){
     let uuid = 1;
     $.each(segmentId, function(index, value){
 
-        $("#containerId").sortable({
-            opacity: 0.5,
-            distance: 50,
-            cursor: "grabbing",
-            containment: "parent",
-            axis: "x",
+        
+        $(function() {
+            // Select the element you want to make sortable
+            var $sortableElement = $('#containerId');
+          
+            // Initialize the sortable function on the element
+            $sortableElement.sortable({
+                //connectWith: ".segment",
+                cursor: "grabbing",
+                axis: "x",
+            });
+
+            // When the mouse pointer enters an element, add the 'segment-container-sortable' class to it
+            $('#containerId').on('mouseenter', '.segment', function(event) {
+                $(this).addClass('segment-container-sortable');
+              });
+          
+            // When the mouse pointer leaves an element, remove the 'segment-container-sortable' class from it
+            $('#containerId').on('mouseleave', '.segment', function(event) {
+                $(this).removeClass('segment-container-sortable');
+              });
+          
+            // When an item is sorted, add the 'segment-container-sortable' class to it
+            $sortableElement.on('sortstart', function(event, ui) {
+              $(ui.item).addClass('segment-container-sortable');
+            });
+            
+            // When sorting stops, remove the 'segment-container-sortable' class from the sorted element
+            $sortableElement.on('sortstop', function(event, ui) {
+              $(ui.item).removeClass('segment-container-sortable');
+            });
         });
+
+        $(function() {
+            // Select the element you want to make sortable
+            var $sortableElement = $('#objectCardId');
+          
+            // Initialize the sortable function on the element
+            $sortableElement.sortable({
+              connectWith: ".segment",
+              //opacity: 0.5,
+              cursor: "grabbing",
+            });
+          
+            // When the mouse pointer enters an element, add the 'object-sortable' class to it
+            $('.object').on('mouseenter', function(event) {
+                $(this).addClass('object-sortable');
+              });
+              
+            // When the mouse pointer leaves an element, remove the 'object-sortable' class from it
+            $('.object').on('mouseleave', function(event) {
+                $(this).removeClass('object-sortable');
+              });
+          
+            // When an item is sorted, add the 'object-sortable' class to it
+            $sortableElement.on('sortstart', function(event, ui) {
+              $(ui.item).addClass('object-sortable');
+            });
+          
+            // When sorting stops, remove the 'object-sortable' class from the sorted element
+            $sortableElement.on('sortstop', function(event, ui) {
+              $(ui.item).removeClass('object-sortable');
+            });
+          });
 
         $("#add").click( function() {
             uuid ++; // dit moeten we bijhouden, precies weten welke blokjes er zijn.
         
-            newSegmentContainer = $('<div>', {class:'segment img', id: "segment" + uuid})
+            newSegmentContainer = $('<div>', {class:'segment', id: "segment" + uuid})
             containerId.append(newSegmentContainer);
             segmentContainer = $('#segment' + uuid);
             segmentContainer.append($('<img>', {src:'images/Empty-Segment.png'}));
+            segmentContainer.insertBefore("#segmentRightVerandaId");
         });
 
-        $("#remove").click( function() {
-            $("#containerId div:last").remove();
+        $(".segment").dblclick( function() {
+            $("#containerId div.segment:last").remove();
 
             // dit specifiek op de laatste id, dus je hebt een array pop, de laatste weg.
             // verwijderen moet op een id kunnen.
-        });
-
-        $(".segment-container").sortable({
-            connectWith: "#objectCardId",
-            opacity: 0.5,
-            cursor: "grabbing",
-            // is hier een class die je kan toevoegen wanneer je aan het draggen bent?
-        });
-
-        $("#objectContainerId").sortable({
-            connectWith: ".segment",
-            opacity: 0.5,
-            cursor: "grabbing",
         });
 
     });

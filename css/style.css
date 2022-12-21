@@ -20,16 +20,6 @@ h2 {
   margin-bottom: 2%;
 }
 
-.segment-draggable {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 2%;
-}
-
 /* This is what I've done before, the spacing in between didn't work this way. 
 
 .segment-container {
@@ -44,6 +34,10 @@ h2 {
   height: 100%;
 }
 
+.segment-container-sortable{
+  outline: orange solid 4px;
+}
+
 .object img {
   width: 100%;
 }
@@ -51,7 +45,8 @@ h2 {
 .objectcontainer {
   height: 50px;
   max-width: 35%;
-  margin: 0 auto;
+  margin: 5% auto;
+
 }
 
 .objectcard {
@@ -64,4 +59,8 @@ h2 {
 
 .object {
   padding: 5%;
+}
+
+.object-sortable{
+  outline: orange solid 4px;
 }
