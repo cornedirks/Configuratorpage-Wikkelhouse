@@ -35,7 +35,7 @@ h2 {
 }
 
 .segment-container-sortable{
-  outline: orange solid 4px;
+  outline: #FF9900 solid 4px;
 }
 
 .object img {
@@ -62,5 +62,6 @@ h2 {
 }
 
 .object-sortable{
-  outline: orange solid 4px;
+  outline: #FF9900 solid 4px;
 }
+

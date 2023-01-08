@@ -12,7 +12,7 @@ $(document).ready(function(){
           
             // Initialize the sortable function on the element
             $sortableElement.sortable({
-                //connectWith: ".segment",
+                connectWith: ".segment",
                 cursor: "grabbing",
                 axis: "x",
             });
@@ -70,15 +70,27 @@ $(document).ready(function(){
             });
           });
 
-        $("#add").click( function() {
-            uuid ++; // dit moeten we bijhouden, precies weten welke blokjes er zijn.
-        
-            newSegmentContainer = $('<div>', {class:'segment', id: "segment" + uuid})
+          $(function() {
+            $('#bed-object').draggable({
+              helper: 'clone'
+            });
+            $('#segmentLeftVerandaId').droppable({
+              drop: function(event, ui) {
+                $(this).find('img').attr('src', 'images/Left-Veranda-Segment-Bed.png');
+              }
+            });
+          });
+
+          function createNewSegment() {
+            uuid ++;
+            newSegmentContainer = $('<div>', {class:'segment', id: `segment${uuid}`});
             containerId.append(newSegmentContainer);
             segmentContainer = $('#segment' + uuid);
             segmentContainer.append($('<img>', {src:'images/Empty-Segment.png'}));
             segmentContainer.insertBefore("#segmentRightVerandaId");
-        });
+          }
+          
+          $("#add").click(createNewSegment);
 
         $(".segment").dblclick( function() {
             $("#containerId div.segment:last").remove();
